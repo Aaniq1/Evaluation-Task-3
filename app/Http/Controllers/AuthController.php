@@ -82,6 +82,27 @@ class AuthController extends Controller
         
     
     }
+    public function logout(Request $request) {
+        
+        $token =$request->bearerToken();
+        $data_decoded=JWT::decode($token,new key("P0551BL3",'HS256')  );
+        $user=User::where("email",$data_decoded->data->email)->first();
+  
+        if ($user['email']=$data_decoded->data->email)
+        {
+            $user->Auth_token=Null;
+            $user->save();
+            $data['data']="logout successfully";
+            return response()->json($data,200);              
+        }
+  
+  
+   
+          
+  
+  
+      }
+  
     
   
 
