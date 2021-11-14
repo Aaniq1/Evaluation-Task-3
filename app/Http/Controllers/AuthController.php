@@ -45,8 +45,8 @@ class AuthController extends Controller
         {
             return response()->json(["Email Does Not Exist"],404);
         }
-        $varify=Auth::attempt(['email'=>$request->input('email'),'password'=>$request->input('password')]);
-        if ($varify) {
+        $verify=Auth::attempt(['email'=>$request->input('email'),'password'=>$request->input('password')]);
+        if ($verify) {
             $user_data['user_name']=auth()->user()->name;
             $user_data['email']=auth()->user()->email;
             $secret_key="P0551BL3";
